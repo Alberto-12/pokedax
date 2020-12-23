@@ -1,42 +1,63 @@
-let pokemonList = [
-  { name: "balbasure", height: 7, types: ["grass", "poison"] },
-  { name: "Arbok", height: 3.5, types: ["fire", "eletric"] },
-  { name: "beedrill", height: 1, types: ["psychic", "flying"] },
-];
-
-for (let i = 0; i < pokemonList.length; i++) {
-
-  let color = ""
-  for(let k = 0; k < pokemonList[i].types.length; k++){
-    if(pokemonList[i].types[k] == "grass"){
-      color= '<span style="color:green;"> ';
-    }else if(pokemonList[i].types[k] == "fire"){
-      color= '<span style="color:red;"> ';
-    }else if(pokemonList[i].types[k] == "flying"){
-      color= '<span style="color:lightblue;"> ';
-    }
+let pokemonRepository = (function () {
+  let pokemonList = [
+    { name: "balbasure", height: 7, types: ["grass", "poison"] },
+    { name: "Arbok", height: 3.5, types: ["fire", "eletric"] },
+    { name: "beedrill", height: 1, types: ["psychic", "flying"] },
+  ];
+  function add(pokemon) {
+    pokemonList.push(pokemon);
   }
 
-  let size = ""
-  if (pokemonList[i].height > 5){
-    size = "WOw! It's a big Pokemon!"
-  }else if(pokemonList[i].height < 3){
-    size = "This is a small Pokemon!"
-  }else{
-    size = "It's a medium Pokemon!"
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+  };
+})();
+
+pokemonRepository.add({
+  name: "Alberto",
+  height: 5,
+  types: ["water", "poison"],
+});
+//for (let i = 0; i < pokemonList.length; i++) {
+pokemonRepository.getAll().forEach(function (pokemon) {
+  let color = "";
+  //for(let k = 0; k < pokemon.types.length; k++){
+  pokemon.types.forEach(function (type) {
+    if (type == "grass") {
+      color = '<span style="color:green;"> ';
+    } else if (type == "fire") {
+      color = '<span style="color:red;"> ';
+    } else if (type == "flying") {
+      color = '<span style="color:lightblue;"> ';
+    } else if (type == "water") {
+      color = '<span style="color:blue;"> ';
+    }
+  });
+
+  let size = "";
+  if (pokemon.height > 5) {
+    size = "WOw! It's a big Pokemon!";
+  } else if (pokemon.height < 3) {
+    size = "This is a small Pokemon!";
+  } else {
+    size = "It's a medium Pokemon!";
   }
   document.write(
     '<div class= "box">' +
-      pokemonList[i].name +
+      pokemon.name +
       "  (height:" +
-      pokemonList[i].height +
+      pokemon.height +
       ")" +
       "<br>" +
       size +
-      color + 
-      pokemonList[i].types +
+      color +
+      pokemon.types +
       "<br>" +
       "</div>"
   );
-}
-
+});
