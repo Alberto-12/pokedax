@@ -12,9 +12,25 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  function addListItem(pokemon) {
+    let ul = document.querySelector(".pokemon-list");
+    let li = document.createElement("li");
+    let button = document.createElement("button");
+    button.classList.add("button")
+    button.innerText = pokemon.name;
+    li.appendChild(button);
+    ul.appendChild(li);
+    button.addEventListener("click", function (event) {
+      showDetails(pokemon);
+    });
+  }
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
   return {
     add: add,
     getAll: getAll,
+    addListItem: addListItem,
   };
 })();
 
@@ -47,17 +63,19 @@ pokemonRepository.getAll().forEach(function (pokemon) {
   } else {
     size = "It's a medium Pokemon!";
   }
-  document.write(
-    '<div class= "box">' +
-      pokemon.name +
-      "  (height:" +
-      pokemon.height +
-      ")" +
-      "<br>" +
-      size +
-      color +
-      pokemon.types +
-      "<br>" +
-      "</div>"
-  );
+  // document.write(
+  //   '<div class= "box">' +
+  //     pokemon.name +
+  //     "  (height:" +
+  //     pokemon.height +
+  //     ")" +
+  //     "<br>" +
+  //     size +
+  //     color +
+  //     pokemon.types +
+  //     "<br>" +
+  //     "</div>"
+  // );
+
+  pokemonRepository.addListItem(pokemon);
 });
