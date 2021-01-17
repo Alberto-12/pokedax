@@ -18,7 +18,7 @@ let pokemonRepository = (function () {
       let $image = $(
         '<img class="card-img-top" alt="Card image" style="width:20%" />'
       );
-      $image.attr("src", pokemon.imageUrl);
+      $image.attr("src", pokemon.imageUrlAnimated);
       let $cardBody = $('<div class="card-body"></div>');
       let $cardTitle = $("<h4 class='card-title' >" + pokemon.name + "</h4>");
       let $seeProfile = $(
@@ -107,6 +107,7 @@ let pokemonRepository = (function () {
       .then(function (details) {
         // Now we add the details to the item
         item.imageUrl = details.sprites.other.dream_world.front_default;
+        item.imageUrlAnimated = details.sprites.versions['generation-v']['black-white'].animated.front_default;
         item.height = details.height;
         item.weight = details.weight;
         item.types = [];
