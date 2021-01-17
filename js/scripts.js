@@ -67,7 +67,9 @@ let pokemonRepository = (function () {
     // //creating element for type in modal content
     let typesElement = $("<p>" + "types : " + pokemon.types + "</p>");
     // //creating element for abilities in modal content
-    let abilitiesElement = $("<p>" + "abilities : " + pokemon.abilities + "</p>");
+    let abilitiesElement = $(
+      "<p>" + "abilities : " + pokemon.abilities + "</p>"
+    );
 
     modalTitle.append(nameElement);
     modalBody.append(imageElementFront);
@@ -106,6 +108,7 @@ let pokemonRepository = (function () {
         // Now we add the details to the item
         item.imageUrl = details.sprites.other.dream_world.front_default;
         item.height = details.height;
+        item.weight = details.weight;
         item.types = [];
         details.types.forEach(function (pokemonType) {
           item.types.push(pokemonType.type.name);
@@ -127,7 +130,6 @@ let pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails,
     showModal: showModal,
-    
   };
 })();
 
